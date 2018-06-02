@@ -13,16 +13,23 @@ var db = require("../models");
 module.exports = function(app) {
 
   // GET route for getting all of the posts
-  app.get("/api/clothing/", function(req, res) {
-    db.Clothing.findAll({})
+  app.get("/api/top/", function(req, res) {
+    db.Top.findAll({})
       .then(function(dbClothing) {
         res.json(dbClothing);
       });
   });
 
+  app.get("/api/bottom/", function (req, res) {
+    db.Bottom.findAll({})
+      .then(function (dbClothing) {
+        res.json(dbClothing);
+      });
+  });
+
   // Get route for returning posts of a specific category
-  app.get("/api/clothing/category/:category", function(req, res) {
-    db.Clothing.findAll({
+  app.get("/api/top/category/:category", function(req, res) {
+    db.Top.findAll({
       where: {
         category: req.params.category
       }
@@ -32,9 +39,32 @@ module.exports = function(app) {
       });
   });
 
+  app.get("/api/bottom/category/:category", function (req, res) {
+    db.Bottom.findAll({
+        where: {
+          category: req.params.category
+        }
+      })
+      .then(function (dbClothing) {
+        res.json(dbClothing);
+      });
+  });
+
+  //Get route for a single link
+  app.get("/api/top/link/:link", function (req, res) {
+    db.Top.findAll({
+        where: {
+          link: req.params.link
+        }
+      })
+      .then(function (dbClothing) {
+        res.json(dbClothing);
+      });
+  });
+
   // Get route for retrieving a single post
-  app.get("/api/clothing/:id", function(req, res) {
-    db.Clothing.findOne({
+  app.get("/api/top/:id", function(req, res) {
+    db.Top.findOne({
       where: {
         id: req.params.id
       }
@@ -44,13 +74,24 @@ module.exports = function(app) {
       });
   });
 
-  // POST route for saving a new post
-  app.post("/api/clothing", function(req, res) {
+  app.get("/api/bottom/:id", function (req, res) {
+    db.Bottom.findOne({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(function (dbClothing) {
+        res.json(dbClothing);
+      });
+  });
+
+  // POST route for saving a new part
+  // Need to add different route for top/bottom based on selection
+  app.post("/api/top", function(req, res) {
     console.log(req.body);
-    db.Clothing.create({
-      title: req.body.title,
+    db.Top.create({
       category: req.body.category,
-      body: req.body.body,
+      link: req.body.link,
       color: req.body.color
     })
       .then(function(dbClothing) {
@@ -58,9 +99,21 @@ module.exports = function(app) {
       });
   });
 
+  app.post("/api/bottom", function (req, res) {
+    console.log(req.body);
+    db.Bottom.create({
+        category: req.body.category,
+        link: req.body.link,
+        color: req.body.color
+      })
+      .then(function (dbClothing) {
+        res.json(dbClothing);
+      });
+  });
+
   // DELETE route for deleting posts
-  app.delete("/api/clothing/:id", function(req, res) {
-    db.Clothing.destroy({
+  app.delete("/api/top/:id", function(req, res) {
+    db.Top.destroy({
       where: {
         id: req.params.id
       }
@@ -70,9 +123,31 @@ module.exports = function(app) {
       });
   });
 
+  app.delete("/api/bottom/:id", function (req, res) {
+    db.Bottom.destroy({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(function (dbClothing) {
+        res.json(dbClothing);
+      });
+  });
+
   // PUT route for updating posts
-  app.put("/api/clothing", function (req, res) {
-    db.Clothing.update(req.body, {
+  app.put("/api/top", function (req, res) {
+    db.Top.update(req.body, {
+        where: {
+          id: req.body.title
+        }
+      })
+      .then(function (dbClothing) {
+        res.json(dbClothing);
+      });
+  });
+
+  app.put("/api/bottom", function (req, res) {
+    db.Bottom.update(req.body, {
         where: {
           id: req.body.title
         }

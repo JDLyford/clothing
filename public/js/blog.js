@@ -1,3 +1,5 @@
+var topImg = "https://image-billioncreation.netdna-ssl.com/wp-content/uploads/2017/04/AARONKAIPOCKETTEE-PARENT__2-100x100.jpg";
+
 $(document).ready(function() {
   // blogContainer holds all of our posts
   var clothingContainer = $(".clothing-container");
@@ -14,7 +16,7 @@ $(document).ready(function() {
     if (categoryString) {
       categoryString = "/category/" + categoryString;
     }
-    $.get("/api/clothing" + categoryString, function(data) {
+    $.get("/api/top" + categoryString, function(data) {
       console.log("Posts", data);
       posts = data;
       if (!posts || !posts.length) {
@@ -31,7 +33,7 @@ $(document).ready(function() {
   function deletePost(id) {
     $.ajax({
       method: "DELETE",
-      url: "/api/clothing/" + id
+      url: "/api/top/" + id
     })
       .then(function() {
         getPosts(postCategorySelect.val());
@@ -52,47 +54,76 @@ $(document).ready(function() {
   }
 
   // This function constructs a post's HTML
-  function createNewRow(post) {
-    var newPostCard = $("<div>");
-    newPostCard.addClass("card");
-    var newPostCardHeading = $("<div>");
-    newPostCardHeading.addClass("card-header");
+  function createNewRow(outfit) {
+    //Initial div
+    var newOutfitCard = $("<div>");
+    newOutfitCard.addClass("card");
+    newOutfitCard.css({
+      height: "auto",
+    });
+    //Initial div heading
+    var newOutfitCardHeading = $("<div>");
+    newOutfitCardHeading.addClass("card-header");
+    //Delete Button
     var deleteBtn = $("<button>");
     deleteBtn.text("x");
     deleteBtn.addClass("delete btn btn-danger");
+    //Edit Button
     var editBtn = $("<button>");
     editBtn.text("EDIT");
     editBtn.addClass("edit btn btn-default");
-    var newPostTitle = $("<h2>");
-    var newPostDate = $("<small>");
-    var newPostCategory = $("<h5>");
-    newPostCategory.text(post.category);
-    newPostCategory.css({
+    //Post Layout Title/Date/Category
+    var newOutfitTitle = $("<h2>");
+    var newOutfitDate = $("<small>");
+    var newOutfitCategory = $("<h5>");
+    newOutfitCategory.text(outfit.category);
+    newOutfitCategory.css({
       float: "right",
       "font-weight": "700",
       "margin-top":
       "-15px"
     });
-    var newPostCardBody = $("<div>");
-    newPostCardBody.addClass("card-body");
-    var newPostBody = $("<p>");
-    newPostTitle.text(post.title + " ");
-    newPostBody.text(post.body);
-    var formattedDate = new Date(post.createdAt);
+    //Post Layout Body
+    var newTopCardBody = $("<div>");
+    newTopCardBody.addClass("top-body");
+    //Want to edit the src to the link in the table
+    var newTopBody = $('<img id="topImg" src="#">');
+    newOutfitTitle.text(outfit.title + " ");
+    newTopBody.text(outfit.body);
+    //Bottom Img Body
+    var newBottomCardBody = $("<div>");
+    newBottomCardBody.addClass("bottom-body");
+    var newBottomBody = $('<img src="https://image-billioncreation.netdna-ssl.com/wp-content/uploads/2017/04/AARONKAIPOCKETTEE-PARENT__2-100x100.jpg" alt="" width="100px">');
+    newOutfitTitle.text(outfit.title + " ");
+    newBottomBody.text(outfit.body);
+    //Post Date setup variable and format
+    var formattedDate = new Date(outfit.createdAt);
     formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
-    newPostDate.text(formattedDate);
-    newPostTitle.append(newPostDate);
-    newPostCardHeading.append(deleteBtn);
-    newPostCardHeading.append(editBtn);
-    newPostCardHeading.append(newPostTitle);
-    newPostCardHeading.append(newPostCategory);
-    newPostCardBody.append(newPostBody);
-    newPostCard.append(newPostCardHeading);
-    newPostCard.append(newPostCardBody);
-    newPostCard.data("post", post);
-    return newPostCard;
+    newOutfitDate.text(formattedDate);
+    //Appending Information to Layouts
+          //Not using Date atm
+          /* newOutfitTitle.append(neOutfitDate); */
+    newOutfitCardHeading.append(deleteBtn);
+    newOutfitCardHeading.append(editBtn);
+          //Do not need to display Part/Title nor Category due to being in dropdown
+          /* newOutfitCardHeading.append(newOutfitTitle);
+          newOutfitCardHeading.append(newOutfitCategory); */
+    newTopCardBody.append(newTopBody);
+    newOutfitCard.append(newOutfitCardHeading);
+    newOutfitCard.append(newTopCardBody);
+    //bottom append
+    newBottomCardBody.append(newBottomBody);
+    newOutfitCard.append(newBottomBody);
+    newOutfitCard.data("outfit", outfit);
+    //Returns the new card to page
+    return newOutfitCard;
+    topImg();
   }
 
+  function topImg() {
+    $("#top-img").attr('src', 'https://image-billioncreation.netdna-ssl.com/wp-content/uploads/2017/04/AARONKAIPOCKETTEE-PARENT__2-100x100.jpg');
+    console.log("topimg ran");
+  }
   // This function figures out which post we want to delete and then calls
   // deletePost
   function handlePostDelete() {
@@ -110,7 +141,7 @@ $(document).ready(function() {
     var currentPost = $(this)
       .parent()
       .parent()
-      .data("post");
+      .data("outfit");
       console.log($(this)+"--------------------------------------------------------------------------")
     window.location.href = "/cms?post_id=" + currentPost.id;
   }

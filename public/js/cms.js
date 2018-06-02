@@ -48,14 +48,14 @@ $(document).ready(function() {
 
   // Submits a new post and brings user to blog page upon completion
   function submitClothing(Clothing) {
-    $.post("/api/clothing/", Clothing, function() {
+    $.post("/api/top/", Clothing, function() {
       window.location.href = "/blog";
     });
   }
 
   // Gets post data for a post if we're editing
   function clothingData(id) {
-    $.get("/api/clothing/" + id, function(data) {
+    $.get("/api/top/" + id, function(data) {
       if (data) {
         // If this post exists, prefill our cms forms with its data
         titleInput.val(data.title);
@@ -72,7 +72,7 @@ $(document).ready(function() {
   function updateClothing(clothing) {
     $.ajax({
       method: "PUT",
-      url: "/api/clothing",
+      url: "/api/top",
       data: clothing
     })
       .then(function() {

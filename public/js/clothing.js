@@ -13,7 +13,7 @@ $(document).ready(function() {
         if (categoryString) {
             categoryString = "/category/" + categoryString;
         }
-        $.get("/api/clothing" + categoryString, function(data) {
+        $.get("/api/top" + categoryString, function(data) {
             console.log("Clothing", data);
             clothing = data;
             if (!clothing || !clothing.length) {
@@ -28,7 +28,7 @@ $(document).ready(function() {
     function deleteClothing(id) {
         $.ajax({
             method: "DELETE",
-            url: "/api/clothing/" + id
+            url: "/api/top/" + id
         })
             .then(function() {
                 getClothing(categorySelect.val());
