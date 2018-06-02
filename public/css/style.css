@@ -1,0 +1,122 @@
+.setting {
+    background-image: url("http://teamne.net/wp-content/uploads/remarkable-walk-in-wardrobe-designs-with-high-white-drawers-among-twin-closets-organizers-clothing-lines-rod-also-open-shelving-combined-slanted-shoes-storage-and-cabinet-drawers-featuring-large-mirro.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#category {
+    background-color: transparent;
+    color: black;
+}
+
+.oc {
+    opacity: 0.8;
+    color: black;
+}
+
+.card {
+    opacity: 1;
+}
+
+
+/* ##############################################################
+                        SHIMMER STYLES
+ ##############################################################*/
+
+.shimmer {
+    /* styling stuff */
+    text-align: center;
+    font-size: 6rem;
+    color: rgba(172, 30, 30, 0.1);
+}
+
+.shimmer {
+    /* the shimmer magic */
+    background: -webkit-gradient(linear, left top, right top, from(#008000), to(#008000), color-stop(.5, #fff));
+    background: -moz-gradient(linear, left top, right top, from(#008000), to(#008000), color-stop(.5, #fff));
+    background: gradient(linear, left top, right top, from(#008000), to(#008000), color-stop(.5, #fff));
+    -webkit-background-size: 25px 100%;
+    -moz-background-size: 25px 100%;
+    background-size: 25px 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-animation-name: shimmer;
+    -moz-animation-name: shimmer;
+    -webkit-animation-name: shimmer;
+    animation-name: shimmer;
+    -webkit-animation-duration: 3s;
+    -moz-animation-duration: 3s;
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-color: #006400;
+}
+
+@-moz-keyframes shimmer {
+    0% {
+        background-position: top left;
+    }
+    100% {
+        background-position: top right;
+    }
+}
+
+@-webkit-keyframes shimmer {
+    0% {
+        background-position: top left;
+    }
+    100% {
+        background-position: top right;
+    }
+}
+
+@-o-keyframes shimmer {
+    0% {
+        background-position: top left;
+    }
+    100% {
+        background-position: top right;
+    }
+}
+
+@-ms-keyframes shimmer {
+    0% {
+        background-position: top left;
+    }
+    100% {
+        background-position: top right;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: top left;
+    }
+    100% {
+        background-position: top right;
+    }
+}
+
+mark.green {
+    color: #006400;
+    font-size: 36px;
+    background: none;
+}
+
+mark.yellow {
+    color: #e6e600;
+    font-size: 36px;
+    background: none;
+}
+
+mark.red {
+    color: #ff0000;
+    font-size: 36px;
+    background: none;
+}

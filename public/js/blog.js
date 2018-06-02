@@ -9,6 +9,9 @@ $(document).ready(function() {
   $(document).on("click", "button.edit", handlePostEdit);
   postCategorySelect.on("change", handleCategoryChange);
   var posts;
+  var bottoms;
+
+  
 
   // This function grabs posts from the database and updates the view
   function getPosts(category) {
@@ -17,7 +20,7 @@ $(document).ready(function() {
       categoryString = "/category/" + categoryString;
     }
     $.get("/api/top" + categoryString, function(data) {
-      console.log("Posts", data);
+      console.log("Tops", data);
       posts = data;
       if (!posts || !posts.length) {
         displayEmpty();
@@ -26,7 +29,14 @@ $(document).ready(function() {
         initializeRows();
         console.log("initialized rows")
       }
-    });
+    })
+    $.get("/api/bottom" + categoryString, function (data) {
+      console.log("Bottoms", data);
+      bottoms = data;
+      console.log(bottoms.link)
+    })
+    //
+    //
   }
 
   // This function does an API call to delete posts
@@ -52,6 +62,8 @@ $(document).ready(function() {
     }
     clothingContainer.append(postsToAdd);
   }
+
+
 
   // This function constructs a post's HTML
   function createNewRow(outfit) {
@@ -88,42 +100,43 @@ $(document).ready(function() {
     newTopCardBody.addClass("top-body");
     //Want to edit the src to the link in the table
     var newTopBody = $('<img id="topImg" src="#">');
+    //
+    newTopBody.attr('src', outfit.link);
+    //
     newOutfitTitle.text(outfit.title + " ");
     newTopBody.text(outfit.body);
     //Bottom Img Body
     var newBottomCardBody = $("<div>");
     newBottomCardBody.addClass("bottom-body");
-    var newBottomBody = $('<img src="https://image-billioncreation.netdna-ssl.com/wp-content/uploads/2017/04/AARONKAIPOCKETTEE-PARENT__2-100x100.jpg" alt="" width="100px">');
+    var newBottomBody = $('<img src="https://image-billioncreation.netdna-ssl.com/wp-content/uploads/2017/04/AARONKAIPOCKETTEE-PARENT__2-100x100.jpg" class="card" width="100px">');
+    //
+    newBottomBody.attr('src', outfit.link2);
     newOutfitTitle.text(outfit.title + " ");
     newBottomBody.text(outfit.body);
     //Post Date setup variable and format
+    //
     var formattedDate = new Date(outfit.createdAt);
     formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
     newOutfitDate.text(formattedDate);
     //Appending Information to Layouts
           //Not using Date atm
-          /* newOutfitTitle.append(neOutfitDate); */
+          /* newOutfitTitle.append(newOutfitDate); */
     newOutfitCardHeading.append(deleteBtn);
     newOutfitCardHeading.append(editBtn);
           //Do not need to display Part/Title nor Category due to being in dropdown
-          /* newOutfitCardHeading.append(newOutfitTitle);
-          newOutfitCardHeading.append(newOutfitCategory); */
+          /* newOutfitCardHeading.append(newOutfitTitle); */
+          newOutfitCardHeading.append(newOutfitCategory);
     newTopCardBody.append(newTopBody);
     newOutfitCard.append(newOutfitCardHeading);
     newOutfitCard.append(newTopCardBody);
     //bottom append
     newBottomCardBody.append(newBottomBody);
-    newOutfitCard.append(newBottomBody);
+    newOutfitCard.append(newBottomCardBody);
     newOutfitCard.data("outfit", outfit);
     //Returns the new card to page
     return newOutfitCard;
-    topImg();
   }
 
-  function topImg() {
-    $("#top-img").attr('src', 'https://image-billioncreation.netdna-ssl.com/wp-content/uploads/2017/04/AARONKAIPOCKETTEE-PARENT__2-100x100.jpg');
-    console.log("topimg ran");
-  }
   // This function figures out which post we want to delete and then calls
   // deletePost
   function handlePostDelete() {
@@ -163,3 +176,17 @@ $(document).ready(function() {
   }
 
 });
+
+  /* function bottoms() {
+    var categoryString = category || "";
+    if (categoryString) {
+      categoryString = "/category/" + categoryString;
+    }
+    $.get("/api/bottom" + categoryString, function (data) {
+      console.log("Bottoms", data);
+      var bottoms = data;
+      console.log(bottoms + " Inside get");
+      return bottoms;
+    });
+  }
+  bottoms(); */
