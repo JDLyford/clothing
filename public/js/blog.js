@@ -79,7 +79,7 @@ $(document).ready(function() {
     //Delete Button
     var deleteBtn = $("<button>");
     deleteBtn.text("x");
-    deleteBtn.addClass("delete btn btn-danger");
+    deleteBtn.addClass("delete btn btn-secondary");
     //Edit Button
     var editBtn = $("<button>");
     editBtn.text("EDIT");
@@ -92,8 +92,6 @@ $(document).ready(function() {
     newOutfitCategory.css({
       float: "right",
       "font-weight": "700",
-      "margin-top":
-      "-15px"
     });
     //Post Layout Body
     var newTopCardBody = $("<div>");
