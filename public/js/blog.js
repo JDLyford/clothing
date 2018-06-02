@@ -30,11 +30,11 @@ $(document).ready(function() {
         console.log("initialized rows")
       }
     })
-    $.get("/api/bottom" + categoryString, function (data) {
+    /* $.get("/api/bottom" + categoryString, function (data) {
       console.log("Bottoms", data);
       bottoms = data;
       console.log(bottoms.link)
-    })
+    }) */
     //
     //
   }
