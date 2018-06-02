@@ -13,8 +13,9 @@ $(document).ready(function() {
   }
 
   // Getting jQuery references to the post body, title, form, and category select
-  var bodyInput = $("#body");
-  var titleInput = $("#title");
+  var colorInput = $("#color");
+  var linkInput = $("#topLink");
+  var link2Input =$("#bottomLink");
   var cmsForm = $("#cms");
   var categorySelect = $("#category");
   // Giving the postCategorySelect a default value
@@ -23,13 +24,14 @@ $(document).ready(function() {
   $(cmsForm).on("submit", function handleFormSubmit(event) {
     event.preventDefault();
     // Wont submit the post if we are missing a body or a title
-    if (!titleInput.val().trim() || !bodyInput.val().trim()) {
+    if (!linkInput.val().trim() || !link2Input.val().trim()) {
       return;
     }
     // Constructing a newPost object to hand to the database
     var newClothing = {
-      title: titleInput.val().trim(),
-      body: bodyInput.val().trim(),
+      color: colorInput.val().trim(),
+      link: linkInput.val().trim(),
+      link2: link2Input.val().trim(),
       category: categorySelect.val()
     };
 
@@ -58,8 +60,9 @@ $(document).ready(function() {
     $.get("/api/top/" + id, function(data) {
       if (data) {
         // If this post exists, prefill our cms forms with its data
-        titleInput.val(data.title);
-        bodyInput.val(data.body);
+        colorInput.val(data.color);
+        linkInput.val(data.link);
+        link2Input.val(data.link2);
         categorySelect.val(data.category);
         // If we have a post with this id, set a flag for us to know to update the post
         // when we hit submit

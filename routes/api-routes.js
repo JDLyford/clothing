@@ -92,6 +92,7 @@ module.exports = function(app) {
     db.Top.create({
       category: req.body.category,
       link: req.body.link,
+      link2: req.body.link2,
       color: req.body.color
     })
       .then(function(dbClothing) {

@@ -1,7 +1,7 @@
 .setting {
     background-image: url("http://teamne.net/wp-content/uploads/remarkable-walk-in-wardrobe-designs-with-high-white-drawers-among-twin-closets-organizers-clothing-lines-rod-also-open-shelving-combined-slanted-shoes-storage-and-cabinet-drawers-featuring-large-mirro.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-repeat: repeat-y;
+    background-size: 100%;
 }
 
 #category {
@@ -16,6 +16,13 @@
 
 .card {
     opacity: 1;
+}
+
+.color {
+    border-radius: 2em;
+    padding: 0.5em;
+    color: black;
+    background-color: rgb(186, 252, 230);
 }
 
 

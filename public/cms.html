@@ -6,48 +6,52 @@
   <title>CMS - Express</title>
   <!-- Latest compiled and minified CSS & JS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+  <link rel="stylesheet" href="css/style.css" media="screen" title="no title">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="row">
-        <div class="col-sm-2 mt-4">
-          <a class="btn btn-light" href="/blog">Go to Home</a>
-        </div>
+  <div class="setting">
+    <div class="container">
+      <div class="shimmer">
+        <h1>
+          Picking Up The Pieces
+        </h1>
+        <h6>
+          Add and Edit Your Outfits
+        </h6>
       </div>
-      <div class="col-md-5 offset-md-3">
-        <form id="cms">
-          <div class="form-group">
-            <label for="title">Clothing:</label>
-            <input type="text" class="form-control" id="title">
-            <br />
-            <div class="form-group">
-              <label for="category">Select Category:</label>
-              <select class="custom-select" id="category">
-                <option value="Everyday">Everyday</option>
-                <option value="Work">Work</option>
-                <option value="Evening">Evening</option>
-              </select>
-            </div>
-            <!-- Copy of Selection for color or other category when applicable -->
-            <!-- <div class="form-group">
-              <label for="category">Select Category:</label>
-              <select class="custom-select" id="category">
-                <option value="Everyday">Everyday</option>
-                <option value="Work">Work</option>
-                <option value="Evening">Evening</option>
-              </select>
-            </div> -->
-            <label for="body">Notes:</label>
-            <textarea class="form-control" rows="10" id="body"></textarea>
-            <br />
-            <button type="submit" class="btn btn-success submit btn-lg">Submit</button>
+      <div class="row">
+        <div class="row">
+          <div class="col-sm-2 mt-4">
+            <a class="btn btn-light color" href="/blog">Go to Home</a>
           </div>
-        </form>
+        </div>
+        <div class="col-md-5 offset-md-3">
+          <form id="cms">
+            <div class="form-group">
+              <div class="form-group">
+                <label for="category" class="color">Select Category:</label>
+                <select class="custom-select">
+                  <option value="Everyday">Everyday</option>
+                  <option value="Work">Work</option>
+                  <option value="Evening">Evening</option>
+                </select>
+              </div>
+              <label for="color" class="color">Color:</label>
+              <input type="text" class="form-control " id="color">
+              <br />
+              <label for="topLink" class="color">Top Link:</label>
+              <input type="text" class="form-control " id="topLink">
+              <br />
+              <label for="bottomLink" class="color">Bottom Link:</label>
+              <input type="text" class="form-control " id="bottomLink">
+              <br />
+              <button type="submit" class="btn btn-success submit btn-lg color">Submit</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>

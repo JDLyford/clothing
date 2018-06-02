@@ -47,6 +47,7 @@ $(document).ready(function() {
     })
       .then(function() {
         getPosts(postCategorySelect.val());
+        console.log("suppose to delete");
       });
   }
 
@@ -141,7 +142,7 @@ $(document).ready(function() {
     var currentPost = $(this)
       .parent()
       .parent()
-      .data("post");
+      .data("outfit");
       console.log($(this)+"deleted")
     deletePost(currentPost.id);
   }
